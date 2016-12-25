@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+import os, sys, argh, shlex, pickle, random as rnd
+tiler_settings = os.path.expanduser("/home/amk/.tiler")
+wallpaper_dir = os.environ['TILER_DIR']
+
+xresources_vars = ["color0:","color5:","foreground:","background:"]
+tiler = pickle.load(open(tiler_settings, "rb"))
+
+def random():
+    xrdb = os.popen("xrdb -query | awk '/{}/ {{print $2}}'".format(rnd.choice(xresources_vars)))
+    tiler["color"] = shlex.quote(xrdb.read().rstrip())
+    pickle.dump(tiler, open(tiler_settings, "wb"))
+    apply()
+
+def pick():
+    picker = os.popen("sxiv -tor {}".format(wallpaper_dir))
+    tiler["path"] = shlex.quote(picker.read().rstrip())
+    if(tiler["path"]):
+        pickle.dump(tiler, open(tiler_settings, "wb"))
+    apply()
+    return
+
+def tint():
+    palette = os.popen("gcolor3")
+    tiler["color"] = shlex.quote(palette.read().rstrip())
+    if(tiler["color"]):
+        pickle.dump(tiler, open(tiler_settings, "wb"))
+    apply()
+    return
+
+def apply():
+    if(tiler["color"]):
+        os.popen("yawa -t {} -T {}".format(tiler["path"], tiler["color"]))
+    else:
+        os.popen("yawa -t {}".format(tiler["path"]))
+
+# assembling:
+parser = argh.ArghParser()
+parser.add_commands([apply, pick, tint, random])
+
+# dispatching:
+if(not wallpaper_dir):
+    sys.exit("Please apply the $TILER_DIR")
+if __name__ == '__main__':
+    parser.dispatch()

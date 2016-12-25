@@ -1,0 +1,47 @@
+````
+┏┓┓o┳  ┳━┓┳━┓  
+ ┃ ┃┃  ┣━ ┃┳┛  
+ ┇ ┇┇━┛┻━┛┇┗┛  
+````
+## A tool for picking & colorizing tiles as wallpapers
+
+### Prerequisites
+Define and environment variable pointing to your wallpaper tiles.
+````
+export TILER_DIR=~/Pictures/meta-tiles
+````
+Make sure you have installed
+* [sxiv](https://github.com/muennich/sxiv)
+* [gcolor3](https://github.com/Hjdskes/gcolor3)
+* [yawa](https://github.com/yabok/yawa)
+
+Python libraries:
+* argh
+
+### Usage
+
+#### tiler pick
+Opens sxiv, select the image to be used as wallpaper and mark it with 'm', exit with 'q'. Sets the wallpaper.
+
+---
+
+#### tiler tint
+Opens gcolor3, pick the color to be used to tint
+the wall and exit normally. Sets the wallpaper.
+
+---
+
+#### tiler random
+Queries your *.Xresources* and grabs color 0,
+5, foreground or background randomly to tint the
+image. Sets the wallpaper.
+
+---
+
+#### tiler apply
+Sets the wallpaper with the last used settings.
+Settings are persisted in *~/.tiler* to live
+across reboots.
+
+---
+

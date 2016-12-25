@@ -3,7 +3,8 @@
  ┃ ┃┃  ┣━ ┃┳┛  
  ┇ ┇┇━┛┻━┛┇┗┛  
 ````
-## A tool for picking & colorizing tiles as wallpapers
+## A script for picking and setting a (tiled) wallpaper from your collection and then coloring it over and over.
+## Allows for custom color tinting or grabbing colors from Xresources.
 
 ### Prerequisites
 Define and environment variable pointing to your wallpaper tiles.

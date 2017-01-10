@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os, sys, argh, shlex, pickle, random as rnd
-tiler_settings = os.path.expanduser("/home/amk/.tiler")
+tiler_settings = os.path.expanduser("$HOME/.tiler")
 wallpaper_dir = os.environ['TILER_DIR']
 
 xresources_vars = ["color0:","color5:","foreground:","background:"]
